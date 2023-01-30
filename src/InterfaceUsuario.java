@@ -6,11 +6,12 @@ import java.util.Scanner;
  * 
  * @author Julio César Alves
  */
-public class InterfaceAgencia {
+public class InterfaceUsuario {
     private Agencia agencia;
     private Scanner entrada;
+    private final int opcaoSair = 6;
 
-    public InterfaceAgencia(String nomeAgencia) {
+    public InterfaceUsuario(String nomeAgencia) {
         agencia = new Agencia(nomeAgencia);
         entrada = new Scanner(System.in);
     }
@@ -20,7 +21,7 @@ public class InterfaceAgencia {
         do {
             opcao = exibirMenu();
             tratarOpcaoMenu(opcao);
-        } while (opcao != 6);
+        } while (opcao != opcaoSair);
     }
 
     private int exibirMenu() {
@@ -62,7 +63,7 @@ public class InterfaceAgencia {
                 break;
         }
 
-        if (opcao != 6) {
+        if (opcao != opcaoSair) {
             aguardarEnter();
         }
     }
@@ -73,7 +74,7 @@ public class InterfaceAgencia {
             System.out.println("Conta " + nroConta + " criada!");
         }
         catch (Exception e) {
-                System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 

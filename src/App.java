@@ -1,6 +1,6 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        InterfaceAgencia interfAgencia = new InterfaceAgencia("Agência UFLA");
-        interfAgencia.exibir();
+        InterfaceUsuario iuAgencia = new InterfaceUsuario("Agência UFLA");
+        iuAgencia.exibir();
     }
 }

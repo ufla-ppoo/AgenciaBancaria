@@ -3,7 +3,7 @@
  * 
  * @author Julio César Alves
  */
-public class AgenciaTeste {
+public class AgenciaBancariaTest {
     public static void main(String[] args) {		
         // cria uma agência de nome "Banco da UFLA"
         Agencia agenciaUFLA = new Agencia("Banco da UFLA");        
