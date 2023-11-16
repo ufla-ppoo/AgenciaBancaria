@@ -68,16 +68,15 @@ public class Agencia {
      * 
      * @param nroConta Número da conta a ter um valor sacado.
      * @param valor Valor a ser sacado da conta.
-     * @return Retorna se o saque foi efetivamente realizado.
      */
-    public boolean sacar(int nroConta, double valor) {
+    public void sacar(int nroConta, double valor) {
         // Busca a conta cujo número foi passado e, se existir, realiza o saque
         Conta conta = contas.get(nroConta);        
         if (conta != null) {
-            return conta.sacar(valor);
+            conta.sacar(valor);
         }
         else {
-            return false;
+            throw new RuntimeException("Conta inválida!!!");
         }
     }
 
@@ -87,19 +86,23 @@ public class Agencia {
      * @param nroContaOrigem Conta da qual sairá o valor.
      * @param nroContaDestino Conta para a qual o valor será transferido.
      * @param valor Valor a ser transferido
-     * @return Retorna se a transferência foi efetivamente realizada.
      */
-    public boolean transferir(int nroContaOrigem, int nroContaDestino, double valor) {
+    public void transferir(int nroContaOrigem, int nroContaDestino, double valor) {
         
         // Busca as contas de origem e destino e, se existirem, tenta fazer a transferência
         Conta contaOrigem = contas.get(nroContaOrigem);
         Conta contaDestino = contas.get(nroContaDestino);
 
-        if ((contaOrigem != null) && (contaDestino != null)) {
-            return contaOrigem.transferir(contaDestino, valor);
+        if(contaOrigem == null){
+            throw new RuntimeException("Conta de origem inválida!!!");
         }
-        else
-            return false;		
+
+        if(contaDestino == null){
+            throw new RuntimeException("Conta de destino inválida!!!");
+        }
+
+        contaOrigem.transferir(contaDestino, valor);
+  
     }
 
     /**

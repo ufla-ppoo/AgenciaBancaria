@@ -25,24 +25,24 @@ public class AgenciaBancariaTest {
 
         System.out.println();
         System.out.println("Sacando 50 da conta " + nroConta1);
-        if (agenciaUFLA.sacar(nroConta1, 50)) {
+        try {
+            agenciaUFLA.sacar(nroConta1, 50);
             System.out.println("\tSaque realizado com sucesso!");
-        }
-        else {
-            System.out.println("\tSaldo insuficiente ou conta inexistente!");
-        }					
+        } catch (Exception e) {
+            System.out.println("\t" + e.getMessage());
+        }		
         System.out.println(agenciaUFLA.gerarRelatorio());
 
         // faz saque na conta 2
 
         System.out.println();
         System.out.println("Sacando 300 da conta " + nroConta1);
-        if (agenciaUFLA.sacar(nroConta2, 300)) {
+        try {
+            agenciaUFLA.sacar(nroConta2, 300);
             System.out.println("\tSaque realizado com sucesso!");
-        }
-        else {
-            System.out.println("\tSaldo insuficiente ou conta inexistente!!");
-        }					
+        } catch (Exception e) {
+            System.out.println("\t" + e.getMessage());
+        }				
         System.out.println(agenciaUFLA.gerarRelatorio());
 
         // faz transferência entre as contas
@@ -50,12 +50,13 @@ public class AgenciaBancariaTest {
         System.out.println();
         System.out.println("Transferindo 120 da conta " + nroConta2 + 
                            " para a conta " + nroConta1);
-        if (agenciaUFLA.transferir(nroConta2, nroConta1, 120)) {
+
+        try {
+            agenciaUFLA.transferir(nroConta2, nroConta1, 120);
             System.out.println("\tTransferencia realizada com sucesso!");
-        }
-        else {
-            System.out.println("\tSaldo insuficiente ou conta inexistente!!");
-        }					
+        } catch (Exception e) {
+            System.out.println("\t" + e.getMessage());
+        }			
         System.out.println(agenciaUFLA.gerarRelatorio());
     }
 }

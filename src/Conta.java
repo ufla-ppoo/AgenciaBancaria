@@ -64,16 +64,14 @@ public class Conta {
      * Saca um valor da conta (se ela tiver saldo suficiente)
      * 
      * @param valor Valor a ser sacado.
-     * @return Retorna se o saque foi efetivamente realizado.
      */
-    public boolean sacar(double valor) {
+    public void sacar(double valor){
         // se a conta tem saldo suficiente, faz o saque
         if (saldo >= valor) {
             saldo -= valor;
-            return true;
         }
         else
-            return false;		
+            throw new SaldoInsuficienteException(numero, saldo);
     }
 
     /**
@@ -81,16 +79,20 @@ public class Conta {
      * 
      * @param contaDestino Conta para o qual o valor será transferido
      * @param valor Valor a ser transferido para a outra conta.
-     * @return Retorna se a transferência foi efetivamente ralizada.
      */
-    public boolean transferir(Conta contaDestino, double valor) {
+    public void transferir(Conta contaDestino, double valor) {
         // tenta sacar o valor da conta; se for possível deposita na de destino
-        if (sacar(valor)) {
+        double saldoAnterior = saldo; 
+        try {
+            sacar(valor);
             contaDestino.depositar(valor);
-            return true;
+        } catch (Exception e) {
+            if(saldo == saldoAnterior-valor){
+                depositar(valor);
+            }
+
+            throw e;
         }
-        else
-            return false;
     }
     
     /**
