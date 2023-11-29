@@ -109,19 +109,21 @@ public class InterfaceUsuario {
     }
 
     private void fazerSaque() {	
-        if (agencia.sacar(pedirConta(), pedirValor())) {
+        try {
+            agencia.sacar(pedirConta(), pedirValor());
             System.out.println("Saque realizado com sucesso!");
-        }
-        else {
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             System.out.println("Não foi possível sacar!");
         }
     }
 
     private void fazerTransferencia() {	
-        if (agencia.transferir(pedirConta(), pedirConta(), pedirValor())) {	            
+        try {
+            agencia.transferir(pedirConta(), pedirConta(), pedirValor());
             System.out.println("Transferencia realizada com sucesso!");		
-        }
-        else {
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             System.out.println("Não foi possível transferir!");
         }
     }
