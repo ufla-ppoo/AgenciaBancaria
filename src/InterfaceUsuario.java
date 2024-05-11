@@ -112,9 +112,12 @@ public class InterfaceUsuario {
         try {
             agencia.sacar(pedirConta(), pedirValor());
             System.out.println("Saque realizado com sucesso!");
-        } catch (Exception e) {
+        } catch (SaldoInsuficienteException e) {
             System.out.println(e.getMessage());
-            System.out.println("Não foi possível sacar!");
+            System.out.println("A conta tinha apenas " + e.getSaldo() + " de saldo!");
+        } catch (Exception e) {
+            System.out.println("Não foi possível sacar: erro inesperado!");
+            System.out.println(e.getMessage());            
         }
     }
 

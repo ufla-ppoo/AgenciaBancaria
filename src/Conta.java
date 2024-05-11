@@ -20,7 +20,7 @@ public class Conta {
      * 
      * @param saldoInicial Saldo inicial da conta
      */
-    Conta(double saldoInicial) {        
+    public Conta(double saldoInicial) {        
         this.numero = proximoNumero;
         proximoNumero++;
         saldo = saldoInicial;
@@ -29,7 +29,7 @@ public class Conta {
     /**
      * Cria um aconta com saldo zerado.
      */
-    Conta() {
+    public Conta() {
         this(0.0);
     }
 

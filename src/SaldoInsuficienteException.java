@@ -11,5 +11,9 @@ public class SaldoInsuficienteException extends RuntimeException{
     public int getNroConta(){
         return nroConta;
     }
+
+    public double getSaldo(){
+        return saldo;
+    }
     
 }
