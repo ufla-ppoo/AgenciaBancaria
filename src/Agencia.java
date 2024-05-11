@@ -80,6 +80,14 @@ public class Agencia {
         }
     }
 
+    private Conta buscarConta(int numeroConta) {
+        Conta conta = contas.get(numeroConta);
+        if (conta == null) {
+            throw new RuntimeException("Conta " + numeroConta + " inválida!!!");
+        }
+        return conta;
+    }
+
     /**
      * Realiza a transferência de um valor de uma conta pra outra.
      * 
@@ -88,21 +96,10 @@ public class Agencia {
      * @param valor Valor a ser transferido
      */
     public void transferir(int nroContaOrigem, int nroContaDestino, double valor) {
-        
         // Busca as contas de origem e destino e, se existirem, tenta fazer a transferência
-        Conta contaOrigem = contas.get(nroContaOrigem);
-        Conta contaDestino = contas.get(nroContaDestino);
-
-        if(contaOrigem == null){
-            throw new RuntimeException("Conta de origem inválida!!!");
-        }
-
-        if(contaDestino == null){
-            throw new RuntimeException("Conta de destino inválida!!!");
-        }
-
+        Conta contaOrigem = buscarConta(nroContaOrigem);
+        Conta contaDestino = buscarConta(nroContaDestino);
         contaOrigem.transferir(contaDestino, valor);
-  
     }
 
     /**

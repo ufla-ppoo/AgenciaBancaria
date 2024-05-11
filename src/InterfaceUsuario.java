@@ -16,7 +16,7 @@ public class InterfaceUsuario {
         entrada = new Scanner(System.in);
     }
     
-    public void exibir() {        
+    public void exibir() {
         int opcao;
         do {
             opcao = exibirMenu();
@@ -44,7 +44,7 @@ public class InterfaceUsuario {
                 criarConta();
                 break;
             case 2:
-                exibirRelatorio();				
+                exibirRelatorio();
                 break;
             case 3:
                 fazerDeposito();
@@ -116,18 +116,21 @@ public class InterfaceUsuario {
             System.out.println(e.getMessage());
             System.out.println("A conta tinha apenas " + e.getSaldo() + " de saldo!");
         } catch (Exception e) {
-            System.out.println("Não foi possível sacar: erro inesperado!");
-            System.out.println(e.getMessage());            
+            System.out.println("Não foi possível sacar!");
+            System.out.println(e.getMessage());
         }
     }
 
     private void fazerTransferencia() {	
         try {
             agencia.transferir(pedirConta(), pedirConta(), pedirValor());
-            System.out.println("Transferencia realizada com sucesso!");		
-        } catch (Exception e) {
+            System.out.println("Transferencia realizada com sucesso!");
+        } catch (SaldoInsuficienteException e) {
             System.out.println(e.getMessage());
+            System.out.println("A conta tinha apenas " + e.getSaldo() + " de saldo!");
+        } catch (Exception e) {
             System.out.println("Não foi possível transferir!");
+            System.out.println(e.getMessage());
         }
     }
 }

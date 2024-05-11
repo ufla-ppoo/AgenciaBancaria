@@ -2,7 +2,7 @@
  * Representa uma conta bancária.
  * 
  * Uma conta bancária possui um número de identificação e um saldo. E possui
- * operações para consultar esses valores e fazer saques, depósitos e 
+ * operações para consultar esses valores e fazer saques, depósitos e
  * transferências.
  * 
  * @author Julio César Alves
@@ -13,19 +13,19 @@ public class Conta {
     // Atributo utilizado para numerar as contas automaticamente
     private static int proximoNumero = 1001;
     // Saldo da conta
-    private double saldo;	
-    
+    private double saldo;
+
     /**
      * Cria uma conta com um saldo inicial
      * 
      * @param saldoInicial Saldo inicial da conta
      */
-    public Conta(double saldoInicial) {        
+    public Conta(double saldoInicial) {
         this.numero = proximoNumero;
         proximoNumero++;
         saldo = saldoInicial;
     }
-    
+
     /**
      * Cria um aconta com saldo zerado.
      */
@@ -65,12 +65,11 @@ public class Conta {
      * 
      * @param valor Valor a ser sacado.
      */
-    public void sacar(double valor){
+    public void sacar(double valor) {
         // se a conta tem saldo suficiente, faz o saque
         if (saldo >= valor) {
             saldo -= valor;
-        }
-        else
+        } else
             throw new SaldoInsuficienteException(numero, saldo);
     }
 
@@ -78,23 +77,22 @@ public class Conta {
      * Transfere um valor da conta para uma outra conta.
      * 
      * @param contaDestino Conta para o qual o valor será transferido
-     * @param valor Valor a ser transferido para a outra conta.
+     * @param valor        Valor a ser transferido para a outra conta.
      */
     public void transferir(Conta contaDestino, double valor) {
         // tenta sacar o valor da conta; se for possível deposita na de destino
-        double saldoAnterior = saldo; 
+        double saldoAnterior = saldo;
         try {
             sacar(valor);
             contaDestino.depositar(valor);
         } catch (Exception e) {
-            if(saldo == saldoAnterior-valor){
+            if (saldo == saldoAnterior - valor) {
                 depositar(valor);
             }
-
-            throw e;
+            throw e; // relançamos a exceção para avisar quem chamou o método
         }
     }
-    
+
     /**
      * Retorna um extrato da conta (número e saldo).
      * 
