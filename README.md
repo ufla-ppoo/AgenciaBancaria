@@ -1,3 +1,5 @@
-## Projeto Agência Bancária
+## Projeto agencia-bancaria-v2
 
-Projeto utilizado como exemplo nas aulas de Tratamentos de Exceção.
+Projeto com o código do final da aula de Tratamentos de Exceção
+da disciplina de Práticas de Programação Orientada a Objetos do curso de
+Ciência da Computação da UFLA.
