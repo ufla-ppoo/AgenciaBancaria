@@ -54,7 +54,7 @@ public class Agencia {
      */
     public void depositar(int nroConta, double valor) {
         // Busca a conta cujo número foi passado e, se existir, realiza o depósito
-        Conta conta = contas.get(nroConta);        
+        Conta conta = buscarConta(nroConta);        
         if (conta != null) {
             conta.depositar(valor);
         }
@@ -71,7 +71,7 @@ public class Agencia {
      */
     public void sacar(int nroConta, double valor) {
         // Busca a conta cujo número foi passado e, se existir, realiza o saque
-        Conta conta = contas.get(nroConta);        
+        Conta conta = buscarConta(nroConta);        
         if (conta != null) {
             conta.sacar(valor);
         }

@@ -36,7 +36,7 @@ public class AgenciaBancariaTest {
         // faz saque na conta 2
 
         System.out.println();
-        System.out.println("Sacando 300 da conta " + nroConta1);
+        System.out.println("Sacando 300 da conta " + nroConta2);
         try {
             agenciaUFLA.sacar(nroConta2, 300);
             System.out.println("\tSaque realizado com sucesso!");
