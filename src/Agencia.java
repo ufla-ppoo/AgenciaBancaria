@@ -53,14 +53,7 @@ public class Agencia {
      * @param valor Valor a ser depositado na conta.
      */
     public void depositar(int nroConta, double valor) {
-        // Busca a conta cujo número foi passado e, se existir, realiza o depósito
-        Conta conta = contas.get(nroConta);        
-        if (conta != null) {
-            conta.depositar(valor);
-        }
-        else {
-            throw new RuntimeException("Conta inválida!!!");
-        }
+        buscarConta(nroConta).depositar(valor);
     }
 
     /**
@@ -70,22 +63,7 @@ public class Agencia {
      * @param valor Valor a ser sacado da conta.
      */
     public void sacar(int nroConta, double valor) {
-        // Busca a conta cujo número foi passado e, se existir, realiza o saque
-        Conta conta = contas.get(nroConta);        
-        if (conta != null) {
-            conta.sacar(valor);
-        }
-        else {
-            throw new RuntimeException("Conta inválida!!!");
-        }
-    }
-
-    private Conta buscarConta(int numeroConta) {
-        Conta conta = contas.get(numeroConta);
-        if (conta == null) {
-            throw new RuntimeException("Conta " + numeroConta + " inválida!!!");
-        }
-        return conta;
+        buscarConta(nroConta).sacar(valor);
     }
 
     /**
@@ -100,6 +78,14 @@ public class Agencia {
         Conta contaOrigem = buscarConta(nroContaOrigem);
         Conta contaDestino = buscarConta(nroContaDestino);
         contaOrigem.transferir(contaDestino, valor);
+    }
+
+    private Conta buscarConta(int numeroConta) {
+        Conta conta = contas.get(numeroConta);
+        if (conta == null) {
+            throw new RuntimeException("Conta " + numeroConta + " inválida!!!");
+        }
+        return conta;
     }
 
     /**
